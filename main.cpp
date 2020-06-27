@@ -8,7 +8,6 @@
 
 float rotate_y = 0, rotate_x = 0; // поворот сцены
 
-
 //много всего и всё служебное
 
 
@@ -34,6 +33,7 @@ void changePosition()
     a.setAcceleration();
     a.setV();
     a.setPosition();
+    //std::cout << Vector3D(a.getX(), a.getY(), a.getZ(), XLeft + (XRight - XLeft) / (quantity + 1), YPendulum, ZPendulum).getLength() << std::endl;
 }
 
 void Rotate(int value)

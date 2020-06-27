@@ -8,14 +8,20 @@
 #include "cmath"
 
 bool right = false;
-int cost = 0;
+float l = 1.3;
 
-float XLeft = -1, XRight = 1; // крепление струны слева и справа
-float g = 9.81, m = 5;
-float T = m * g;
+float v0 = -2;
+float h0 = 0.7 + 0.3;
+float  forPendulum = 0.6;
 float ZPendulum = 0; // крепление к струне по Z
 float quantity = 1; // число маятников
-float YPendulum = 0.7; // крепление к струне по Y
+float YPendulum = 0.6; // крепление к струне по Y
+
+float XLeft = -1, XRight = 1; // крепление струны слева и справа
+float g = 9.81, m = 1.5;
+float T = m * g;
+float F = 70;
+float lengthToPendulum = (XRight - XLeft) / (quantity + 1);
 
 class pendulum {
 private:

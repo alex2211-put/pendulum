@@ -3,7 +3,7 @@
 //
 
 
-pendulum a(-0.3, -0.2, -1.5);
+pendulum a(YPendulum - h0, 0, v0);
 
 
 void paintPolygon()
@@ -148,14 +148,13 @@ void paintLine()
         glBegin(GL_LINES);
         glColor3f(1, 0, 0);
         if(i == 1)
-            glVertex3f(XLeft + (i - 1) * (XRight - XLeft) / (quantity + 1), 0.7,
-                       ZPendulum);
+            glVertex3f(XLeft + (i - 1) * (XRight - XLeft) / (quantity + 1), 0.7, 0);
         else
             glVertex3f(XLeft + (i - 1) * (XRight - XLeft) / (quantity + 1), YPendulum,
-                       ZPendulum);  //здесь и далее сначала цвет
+                       ZPendulum);
         glColor3f(0, 0, 1);
         if (i == quantity + 1)
-            glVertex3f(XLeft + (i) * (XRight - XLeft) / (quantity + 1), 0.7, ZPendulum);
+            glVertex3f(XLeft + (i) * (XRight - XLeft) / (quantity + 1), 0.7, 0);
         else
             glVertex3f(XLeft + (i) * (XRight - XLeft) / (quantity + 1), YPendulum, ZPendulum);
         glEnd();
