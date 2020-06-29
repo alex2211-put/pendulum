@@ -39,9 +39,6 @@ void pendulum::setAcceleration() {
     this->right = this->z >= 0;
     if (Vector3D(this->x, this->y, this->z, XLeft + lengthToPendulum * this->schet, this->stringMountY, this->stringMountZ).getLength() < l && (this->z > -0.03 && this->z < 0.03))
     {
-        if (schet == 1)
-            std::cout << 1 << std::endl;
-        else std::cout << 2 << std::endl;
         if (v0 < 0) {
             if (this->right)
                 this->v = v0;
