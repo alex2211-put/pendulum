@@ -30,10 +30,21 @@ void changeSize(int w, int h)
 
 void changePosition()
 {
-    a.setAcceleration();
-    a.setV();
-    a.setPosition();
-    //std::cout << Vector3D(a.getX(), a.getY(), a.getZ(), XLeft + (XRight - XLeft) / (quantity + 1), YPendulum, ZPendulum).getLength() << std::endl;
+    if(quantity == 1) {
+        a.setAcceleration();
+        a.setV();
+        a.setPosition();
+    }
+    if(quantity == 2)
+    {
+        a.setAcceleration();
+        a.setV();
+        a.setPosition();
+
+        b.setAcceleration();
+        b.setV();
+        b.setPosition();
+    }
 }
 
 void Rotate(int value)
@@ -51,10 +62,27 @@ void displayCell()
     changePosition();
     paintLine();
     paintPolygon();
-    glTranslated(a.getX(), a.getY(), a.getZ());
+
+    glPushMatrix();       // сохраняем текущие координаты
+    glTranslated(a.getX(),a.getY(),a.getZ());  // сдвигаемся по оси Х на единицу
+    glColor3d(0,1,0);
+    glutSolidSphere(0.1, 30, 30); // рисуем сферу в (1,0,0)  в абсолютных координатах
+    glPopMatrix();  // возвращаемся к старой системе координат
+
+    glPushMatrix();       // сохраняем текущие координаты
+    glTranslated(b.getX(),b.getY(),b.getZ());  // сдвигаемся по оси Х на единицу
+    glColor3d(0,1,0);
+    glutSolidSphere(0.1, 30, 30); // рисуем сферу в (1,0,0)  в абсолютных координатах
+    glPopMatrix();
+    /*
+    glTranslated(b.getX(), b.getY(), b.getZ());
     glColor4f(0, 1, 0, 0.8);
     glutSolidSphere(0.1, 30, 30);
 
+    glTranslated(a.getX(), a.getY(), a.getZ());
+    glColor4f(0, 1, 0, 0.8);
+    glutSolidSphere(0.1, 30, 30);
+*/
 
     glLoadIdentity();
     glEnable(GL_ALPHA_TEST);

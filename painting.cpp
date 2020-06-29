@@ -3,7 +3,8 @@
 //
 
 
-pendulum a(YPendulum - h0, 0, v0);
+pendulum a(0, 1, 1);
+pendulum b(0, -1, 2);
 
 
 void paintPolygon()
@@ -144,26 +145,69 @@ void paintPolygon()
 void paintLine()
 {
     //glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
-    for (int i = 1; i <= quantity + 1; i++) {
+    if(quantity == 1)
+    {
         glBegin(GL_LINES);
         glColor3f(1, 0, 0);
-        if(i == 1)
-            glVertex3f(XLeft + (i - 1) * (XRight - XLeft) / (quantity + 1), 0.7, 0);
-        else
-            glVertex3f(XLeft + (i - 1) * (XRight - XLeft) / (quantity + 1), YPendulum,
-                       ZPendulum);
+        glVertex3f(XLeft, 0.7, 0);
+
         glColor3f(0, 0, 1);
-        if (i == quantity + 1)
-            glVertex3f(XLeft + (i) * (XRight - XLeft) / (quantity + 1), 0.7, 0);
-        else
-            glVertex3f(XLeft + (i) * (XRight - XLeft) / (quantity + 1), YPendulum, ZPendulum);
+        glVertex3f(XLeft + 1 * lengthToPendulum, a.getStringMountY(),
+                   a.getStringMountZ());
+        glEnd();
+
+        glBegin(GL_LINES);
+        glColor3f(1, 0, 0);
+        glVertex3f(XLeft + 1 * lengthToPendulum, a.getStringMountY(), a.getStringMountZ());
+
+        glColor3f(0, 0, 1);
+        glVertex3f(XLeft + 2 * lengthToPendulum, 0.7, 0);
+
         glEnd();
     }
+    if(quantity == 2)
+        {
+            glBegin(GL_LINES);
+            glColor3f(1, 0, 0);
+                glVertex3f(XLeft, 0.7, 0);
+
+            glColor3f(0, 0, 1);
+                glVertex3f(XLeft + 1 * lengthToPendulum, a.getStringMountY(), a.getStringMountZ());
+            glEnd();
+
+            glBegin(GL_LINES);
+            glColor3f(1, 0, 0);
+            glVertex3f(XLeft + 1 * lengthToPendulum, a.getStringMountY(), a.getStringMountZ());
+
+            glColor3f(0, 0, 1);
+            glVertex3f(XLeft + 2 * lengthToPendulum, b.getStringMountY(), b.getStringMountZ());
+            glEnd();
+
+            glBegin(GL_LINES);
+            glColor3f(1, 0, 0);
+            glVertex3f(XLeft + 2 * lengthToPendulum, b.getStringMountY(), b.getStringMountZ());
+
+            glColor3f(0, 0, 1);
+            glVertex3f(XRight, 0.7, 0);
+
+            glEnd();
+        }
+
+
     glBegin(GL_LINES);
     glColor3f(0, 1, 1);
-    glVertex3f(XLeft + (XRight - XLeft) / (quantity + 1), YPendulum, ZPendulum);
+    glVertex3f(XLeft + lengthToPendulum, a.getStringMountY(), a.getStringMountZ());
     glColor3f(1, 1, 0);
     glVertex3f(a.getX(), a.getY(), a.getZ());
     glEnd();
 
+    if(quantity == 2)
+    {
+        glBegin(GL_LINES);
+        glColor3f(0, 1, 1);
+        glVertex3f(XLeft + lengthToPendulum * 2, b.getStringMountY(), b.getStringMountZ());
+        glColor3f(1, 1, 0);
+        glVertex3f(b.getX(), b.getY(), b.getZ());
+        glEnd();
+    }
 }
